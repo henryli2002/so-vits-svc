@@ -165,3 +165,4 @@ pretrain/
 .vscode/launch.json
 
 trained/**/
+model_save
