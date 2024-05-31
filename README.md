@@ -366,7 +366,7 @@ Use [inference_main.py](https://github.com/svc-develop-team/so-vits-svc/blob/4.0
 
 ```shell
 # Example
-python inference_main.py -m "logs/44k/G_30400.pth" -c "configs/config.json" -n "君の知らない物語-src.wav" -t 0 -s "nen"
+python inference_main.py -m "logs/44k/G_79200.pth" -c "configs/config.json" -n "raw-name" -t 0 -s "Ava" -cl 60
 ```
 
 Required parameters:
