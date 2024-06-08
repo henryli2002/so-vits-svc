@@ -13,7 +13,6 @@ $flacFiles = Get-ChildItem -Filter *.flac
 $ffmpegPath = "ffmpeg" # 使用系统路径中的 ffmpeg
 foreach ($flacFile in $flacFiles) {
     $wavFile = [System.IO.Path]::ChangeExtension($flacFile.FullName, ".wav")
-    $convertCommand = "$ffmpegPath -i `"$($flacFile.FullName)`" `"$($wavFile)`""
     Write-Output "Converting $($flacFile.FullName) to $wavFile"
     Start-Process -FilePath $ffmpegPath -ArgumentList "-i `"$($flacFile.FullName)`" `"$($wavFile)`"" -NoNewWindow -Wait
     Remove-Item $flacFile.FullName
@@ -58,11 +57,7 @@ foreach ($prefix in $fileGroups.Keys) {
         $len2 = [System.IO.Path]::GetFileNameWithoutExtension($input2).Length
         
         # 设置音量调整命令
-        if ($len1 -gt $len2) {
-            $volumeFilter = "[0]volume=2[a];[a][1]amix=inputs=2:duration=longest"
-        } else {
-            $volumeFilter = "[1]volume=2[a];[0][a]amix=inputs=2:duration=longest"
-        }
+        $volumeFilter = "[0]volume=1.0[a];[1]volume=1.0[b];[a][b]amix=inputs=2:duration=longest"
 
         # 构建输出文件路径
         $shortName = if ($len1 -le $len2) { [System.IO.Path]::GetFileNameWithoutExtension($input1) } else { [System.IO.Path]::GetFileNameWithoutExtension($input2) }

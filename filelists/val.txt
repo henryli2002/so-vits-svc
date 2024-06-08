@@ -1,2 +1,2 @@
-./dataset/44k/Ava/Ava_255.wav
-./dataset/44k/Ava/Ava_45.wav
+./dataset/44k/Ava/Ava_334.wav
+./dataset/44k/Ava/Ava_187.wav
